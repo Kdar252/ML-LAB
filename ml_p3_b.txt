@@ -1,0 +1,28 @@
+ #p3b:Identify and Delete Columns That Contain a Single Value by considering an
+appropriate dataset.
+
+import pandas as pd
+from numpy import unique
+from pandas import read_csv
+
+# summarize the number of unique values for each column using numpy
+# load the dataset
+data = pd.read_csv('oil-spill.csv', header=None)
+
+# summarize the number of unique values in each column
+print(data.nunique())
+
+# delete columns with a single unique value
+# define the location of the dataset
+print(data.shape)
+
+# get number of unique values for each column
+counts = data.nunique()
+
+# record columns to delete
+to_del = [i for i,v in enumerate(counts) if v == 1]
+print(to_del)
+
+# drop useless columns
+data.drop(to_del, axis=1, inplace=True)
+print(data.shape)

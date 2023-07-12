@@ -1,0 +1,27 @@
+"""P3a:Identify and Delete Rows that Contain Duplicate Data by considering an appropriate
+dataset."""
+
+from numpy import unique
+from pandas import read_csv
+import pandas as pd
+
+# load the dataset
+data = pd.read_csv('iris.csv', header=None)
+
+# calculate duplicates
+dups = data.duplicated()
+
+# report if there are any duplicates
+print(dups.any())
+
+# list all duplicate rows
+print(data[dups])
+
+# shape before deleting rows of duplicate data 
+print(data.shape)
+
+# delete duplicate rows from the dataset
+data.drop_duplicates(inplace=True)
+
+# shape after deleting rows of duplicate data
+print(data.shape)
